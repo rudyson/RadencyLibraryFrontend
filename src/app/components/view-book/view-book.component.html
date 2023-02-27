@@ -21,7 +21,7 @@
     </tr>
     <tr>
       <td colspan="2">
-        <div *ngFor="let r of $any(book.reviews ) | async; let review">
+        <div *ngFor="let r of $any(book.reviews ) | async; let review"><!-- *ngFor="let r of $any(book.reviews ) | async; let review" -->
     <p>{{review.message}}</p>
     <p>{{review.reviewer}}</p>
   </div>

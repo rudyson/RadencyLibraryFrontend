@@ -7,7 +7,6 @@ import {Component} from '@angular/core';
 })
 export class AddNewBookComponent {
   imageData: string | undefined;
-  name = 'Angular';
   isImageSaved: boolean = false;
   cardImageBase64: string = "";
   imageError: string | undefined;

@@ -65,17 +65,23 @@
         </tr>
         <tr>
           <td>
+            <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+            <!--
             <button mat-flat-button matTooltip="Upload book's cover from disk" color="accent">
               <mat-icon>cloud_upload</mat-icon>
-              <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile">
+
               Upload
             </button>
+            -->
           </td>
           <td>
+            <input type="button" mat-flat-button matTooltip="Add" color="primary">
+            <!--
             <button mat-flat-button matTooltip="Add" color="primary">
               <mat-icon>add</mat-icon>
               Add
             </button>
+            -->
           </td>
           <td>
             <button mat-flat-button matTooltip="Clear" color="warn">
