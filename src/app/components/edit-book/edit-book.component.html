@@ -1,0 +1,4 @@
+<div *ngIf="book$ | async; let book">
+  <p>{{book.content}}</p>
+</div>
+<button (click)="onCloseClick()">Close</button>

@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <span>View details</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="onCloseClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+<div *ngIf="book$ | async; let book">
+  <table>
+    <tr>
+      <td>
+        <div id="coverContainer">
+          <img src="{{book.cover}}" alt="">
+        </div>
+      </td>
+      <td>
+        <h3>{{book.title}}</h3>
+        <h4>{{book.author}}, $genre</h4>
+        <p>{{book.content}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div *ngFor="let r of $any(book.reviews ) | async; let review">
+    <p>{{review.message}}</p>
+    <p>{{review.reviewer}}</p>
+  </div>
+      </td>
+    </tr>
+  </table>
+</div>
+

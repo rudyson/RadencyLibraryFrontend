@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title matTooltip="{{book.author}}">
+      {{book.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      Review: <span>{{book.reviewsNumber}}</span> Rating: <span>{{book.rating}}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <button mat-button matTooltip="Edit book's information" color="accent"
+    (click)="openEditBookDialog()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button mat-button matTooltip="Detailed information about book" color="accent"
+    (click)="openViewBookDialog()">
+      <mat-icon>visibility</mat-icon>
+      View
+    </button>
+  </mat-card-actions>
+</mat-card>

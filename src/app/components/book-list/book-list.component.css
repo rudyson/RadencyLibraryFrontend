@@ -1,0 +1,11 @@
+div.booksContainer {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25% ;
+  list-style-type: none;
+  /*background-color: #888888;*/
+  padding: 0;
+}
+
+div.booksContainer > app-book-list-item {
+  margin: 5px;
+}

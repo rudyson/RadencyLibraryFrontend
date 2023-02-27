@@ -1,0 +1,24 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="All">
+    <mat-form-field appearance="fill">
+      <mat-label>Order by</mat-label>
+      <mat-select [(value)]="selectedOrderOption" (selectionChange)="loadBooks()">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let orderOption of orderOptions" [value]="orderOption.value">
+          {{orderOption.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <div class="booksContainer">
+      <app-book-list-item
+        *ngFor="let book of booksOrdered$ | async; let i = index"
+        [book]="book">
+      </app-book-list-item>
+    </div>
+  </mat-tab>
+  <mat-tab label="Recommended">
+    <mat-spinner *ngIf="loading"></mat-spinner>
+    <p>Recommended</p>
+  </mat-tab>
+</mat-tab-group>
