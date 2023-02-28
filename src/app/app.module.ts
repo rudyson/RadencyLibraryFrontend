@@ -21,13 +21,13 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { BookListItemComponent } from './components/book-list-item/book-list-item.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { ViewBookComponent } from './components/view-book/view-book.component';
-import { BooksPageComponent } from './components/books-page/books-page.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { NewBookPaneComponent } from './components/new-book-pane/new-book-pane.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     BookListItemComponent,
     EditBookComponent,
     ViewBookComponent,
-    BooksPageComponent
+    NewBookPaneComponent
   ],
   entryComponents:[
     EditBookComponent,

@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {delay, Observable} from "rxjs";
 import {
   IBookCompactModel,
-  IBookDetailedModel, IBookEditModel,
+  IBookDetailedModel, IBookEditModel, IBookNewModel,
   ICompactRate,
   ICompactReview, IResponseBook,
   IResponseRate,
@@ -24,6 +24,9 @@ export class ApiFetcherService {
 
   deleteBook(id: number, secret: string) {
     return this.http.delete<IResponseBook>(`${(this.backendUrl)}/api/books/${id.toString()}?secret=${secret}`);
+  }
+  postNewBookInformation(book: IBookNewModel) {
+    return this.http.post<IResponseBook>(`${(this.backendUrl)}/api/books/save`, book);
   }
 
   postBookInformation(book: IBookEditModel) {

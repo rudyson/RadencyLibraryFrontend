@@ -12,6 +12,13 @@ export interface IBookDetailedModel {
 export interface IResponseBook{
   id:number
 }
+export interface IBookNewModel{
+  genre: string,
+  title: string,
+  cover: string,
+  content: string,
+  author: string
+}
 export interface IBookEditModel{
   id: number,
   title: string,

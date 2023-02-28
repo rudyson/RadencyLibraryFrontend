@@ -6,7 +6,7 @@
     <mat-icon>close</mat-icon>
   </button>
 </mat-toolbar>
-<div *ngIf="book$ | async; let book">
+<div *ngIf="book$ | async; let book;">
   <form class="fit-parent-w fit-parent-h" (ngSubmit)="onSaveChanges(formEditBook.value)" #formEditBook="ngForm">
     <table class="fit-parent-w fit-parent-h">
       <tr>
@@ -47,7 +47,7 @@
         <td>
           <mat-form-field class="fit-parent-w">
             <mat-label>Title</mat-label>
-            <input matInput type="text" placeholder="Book" value="{{book.title}}" name="title" required>
+            <input matInput type="text" placeholder="Book" value="{{book.title}}" name="title" required [(ngModel)]="book.title">
           </mat-form-field>
         </td>
       </tr>
@@ -55,7 +55,7 @@
         <td>
           <mat-form-field class="fit-parent-w">
             <mat-label>Author</mat-label>
-            <input matInput type="text" placeholder="John Doe" value="{{book.author}}" name="author" required>
+            <input matInput type="text" placeholder="John Doe" value="{{book.author}}" name="author" required [(ngModel)]="book.author">
           </mat-form-field>
         </td>
       </tr>
@@ -66,7 +66,7 @@
             <textarea matInput #maxContentLength maxlength="65535"
                       cdkTextareaAutosize
                       cdkAutosizeMinRows="11"
-                      cdkAutosizeMaxRows="25" placeholder="Describe book content" name="content" required>{{book.content}}</textarea>
+                      cdkAutosizeMaxRows="25" placeholder="Describe book content" name="content" required [(ngModel)]="book.content">{{book.content}}</textarea>
             <mat-hint align="end">{{maxContentLength.value.length}} / 65535</mat-hint>
           </mat-form-field>
         </td>

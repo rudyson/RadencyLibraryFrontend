@@ -28,15 +28,14 @@ export class EditBookComponent implements OnInit, OnDestroy {
 
   loadBook(): void {
     this.loading = true;
-    this.book$ = this.apiFetcher
-      .getBookById(this.id).pipe(
+    this.book$ = this.apiFetcher.getBookById(this.id).pipe(
         tap(res => {
+          console.log(res)
           this.loading = false;
           this.cardImageBase64edit = res.cover;
           this.isImageSaved = true;
         })
       );
-
   }
 
   onCloseClick() {
