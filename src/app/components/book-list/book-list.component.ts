@@ -45,7 +45,7 @@ export class BookListComponent implements OnInit {
     this.loadRecommendedBooks();
   }
 
-  loadRecommededFormSent(value: any) {
+  loadRecommendedFormSent(value: any) {
     let genre = value.genre as string;
     this.genreOrderOption = (genre=="") ? undefined:genre;
     this.loadRecommendedBooks();

@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {Promise} from 'es6-promise'
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NewbookformComponent } from './components/old/newbookform/newbookform.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import { AddNewBookComponent } from './components/old/add-new-book/add-new-book.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -32,8 +29,6 @@ import { NewBookPaneComponent } from './components/new-book-pane/new-book-pane.c
 @NgModule({
   declarations: [
     AppComponent,
-    NewbookformComponent,
-    AddNewBookComponent,
     BookListComponent,
     BookListItemComponent,
     EditBookComponent,
