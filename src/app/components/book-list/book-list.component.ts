@@ -14,16 +14,25 @@ interface OrderOption {
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
-  loading = false;
-  booksOrdered$: Observable<IBookCompactModel[]>;
+  loadingAll = false;
+  loadingRecommended = false;
+  booksAllOrdered$: Observable<IBookCompactModel[]>;
+  booksRecommended$: Observable<IBookCompactModel[]>;
   selectedOrderOption: string | undefined;
   orderOptions: OrderOption[] = [{value: 'title', viewValue: 'Title'}, {value: 'author', viewValue: 'Author'}];
 
-  loadBooks(): void {
-    this.loading = true;
-    this.booksOrdered$ = this.apiFetcher
+  loadAllBooks(): void {
+    this.loadingAll = true;
+    this.booksAllOrdered$ = this.apiFetcher
       .getBooksOrderedList(this.selectedOrderOption).pipe(
-        tap(() => this.loading = false)
+        tap(() => this.loadingAll = false)
+      );
+  }
+  loadRecommendedBooks(): void {
+    this.loadingRecommended = true;
+    this.booksRecommended$ = this.apiFetcher
+      .getBooksRecommendations(undefined).pipe(
+        tap(() => this.loadingRecommended = false)
       );
   }
 
@@ -31,6 +40,7 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadBooks();
+    this.loadAllBooks();
+    this.loadRecommendedBooks();
   }
 }

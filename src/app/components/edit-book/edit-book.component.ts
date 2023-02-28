@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ApiFetcherService} from "../../services/api-fetcher.service";
 import {Observable, tap} from "rxjs";
 import {IBookDetailedModel, IBookEditModel, ICompactReview} from "../../models/models";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-edit-book',
@@ -134,11 +135,31 @@ export class EditBookComponent implements OnInit, OnDestroy {
       author: value.author
     } as IBookEditModel).subscribe(
       next => {
-        this.matDialogRef.close();
+        this.matDialogRef.close("Book edited");
       },
       error => {
         console.error(error)
       }
     );
+  }
+
+  tryToDeleteBook() {
+    if (confirm("Are you sure?")) {
+      let secret = prompt("What's the SECRET?");
+      if (secret == null || secret == "") {
+      } else {
+        this.apiFetcher.deleteBook(this.id, secret).subscribe(
+          next => {
+            this.matDialogRef.close("Book deleted");
+          },
+          error => {
+            confirm("Access denied")
+            console.error(error)
+          }
+        );
+      }
+    } else {
+
+    }
   }
 }

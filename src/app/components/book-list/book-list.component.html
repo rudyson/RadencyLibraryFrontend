@@ -3,27 +3,47 @@
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Order by</mat-label>
-        <mat-select [(value)]="selectedOrderOption" (selectionChange)="loadBooks()">
+        <mat-select [(value)]="selectedOrderOption" (selectionChange)="loadAllBooks()">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let orderOption of orderOptions" [value]="orderOption.value">
             {{orderOption.viewValue}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <button mat-icon-button (click)="loadBooks()">
+      <button mat-icon-button (click)="loadAllBooks()">
         <mat-icon>refresh</mat-icon>
       </button>
-      <mat-spinner [diameter]="24" *ngIf="loading"></mat-spinner>
+      <mat-spinner [diameter]="24" *ngIf="loadingAll"></mat-spinner>
     </div>
     <div class="booksContainer">
       <app-book-list-item
-        *ngFor="let book of booksOrdered$ | async; let i = index"
+        *ngFor="let book of booksAllOrdered$ | async; let i = index"
         [book]="book">
       </app-book-list-item>
     </div>
   </mat-tab>
   <mat-tab label="Recommended">
-    <mat-spinner *ngIf="loading"></mat-spinner>
-    <p>Recommended</p>
+    <div>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Genre</mat-label>
+          <input type="text" matInput placeholder="Fiction">
+
+        </mat-form-field>
+        <button mat-icon-button type="submit">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button (click)="loadRecommendedBooks()" type="button">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </form>
+    </div>
+    <div class="booksContainer">
+      <mat-spinner [diameter]="24" *ngIf="loadingRecommended"></mat-spinner>
+      <app-book-list-item
+        *ngFor="let book of booksRecommended$ | async; let i = index"
+        [book]="book">
+      </app-book-list-item>
+    </div>
   </mat-tab>
 </mat-tab-group>
