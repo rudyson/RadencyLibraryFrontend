@@ -24,10 +24,10 @@
   </mat-tab>
   <mat-tab label="Recommended">
     <div>
-      <form class="example-form">
+      <form class="example-form" (ngSubmit)="loadRecommededFormSent(formRecommendedByGenre.value)" #formRecommendedByGenre="ngForm">
         <mat-form-field class="example-full-width">
           <mat-label>Genre</mat-label>
-          <input type="text" matInput placeholder="Fiction">
+          <input type="text" matInput placeholder="Fiction" name="genre">
 
         </mat-form-field>
         <button mat-icon-button type="submit">

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IBookCompactModel} from "../../models/models";
+import {IBookCompactModel, IBookEditModel} from "../../models/models";
 import {Observable, tap} from "rxjs";
 import {ApiFetcherService} from "../../services/api-fetcher.service";
 
@@ -19,6 +19,7 @@ export class BookListComponent implements OnInit {
   booksAllOrdered$: Observable<IBookCompactModel[]>;
   booksRecommended$: Observable<IBookCompactModel[]>;
   selectedOrderOption: string | undefined;
+  genreOrderOption: string | undefined;
   orderOptions: OrderOption[] = [{value: 'title', viewValue: 'Title'}, {value: 'author', viewValue: 'Author'}];
 
   loadAllBooks(): void {
@@ -31,7 +32,7 @@ export class BookListComponent implements OnInit {
   loadRecommendedBooks(): void {
     this.loadingRecommended = true;
     this.booksRecommended$ = this.apiFetcher
-      .getBooksRecommendations(undefined).pipe(
+      .getBooksRecommendations(this.genreOrderOption).pipe(
         tap(() => this.loadingRecommended = false)
       );
   }
@@ -41,6 +42,12 @@ export class BookListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAllBooks();
+    this.loadRecommendedBooks();
+  }
+
+  loadRecommededFormSent(value: any) {
+    let genre = value.genre as string;
+    this.genreOrderOption = (genre=="") ? undefined:genre;
     this.loadRecommendedBooks();
   }
 }
