@@ -27,6 +27,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatDialogModule} from "@angular/material/dialog";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatInputModule,
     MatTooltipModule,
     MatFormFieldModule,
     MatInputModule,
@@ -61,7 +63,9 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatToolbarModule,
     MatExpansionModule,
     MatBadgeModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [

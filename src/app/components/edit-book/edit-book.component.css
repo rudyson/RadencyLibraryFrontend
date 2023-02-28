@@ -1,5 +1,27 @@
-#coverContainer{
+.spacer{
+  flex: 1 1 auto;
+}
+.coverContainer{
   width: 200px;
   height: 300px;
-  background-color: #888888;
+  background-color: #f5f5f5;
+  margin: 5px;
+  border-radius: 5px;
+}
+.coverContainer > img{
+  max-width:100%;
+  max-height:100%;
+  border-radius: 5px;
+}
+.reviewCard{
+  margin: 10px;
+}
+.reviewCard > mat-card-title, .reviewCard > mat-card-subtitle{
+  margin-left: 5px;
+}
+.fit-parent-w{
+  width: 100%;
+}
+.fit-parent-h{
+  height: 100%;
 }

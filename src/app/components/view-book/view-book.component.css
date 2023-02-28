@@ -13,3 +13,9 @@
   width: 100%;
   border-radius: 5px;
 }
+.reviewCard{
+  margin: 10px;
+}
+.reviewCard > mat-card-title, .reviewCard > mat-card-subtitle{
+  margin-left: 5px;
+}

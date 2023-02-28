@@ -1,4 +1,5 @@
 <mat-toolbar color="primary">
+  <span class="spacer"></span>
   <span>View details</span>
   <span class="spacer"></span>
   <button mat-icon-button (click)="onCloseClick()">
@@ -6,10 +7,91 @@
   </button>
 </mat-toolbar>
 <div *ngIf="book$ | async; let book">
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{book.title}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{book.author}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <table>
+      <tr>
+        <td>
+          <div id="coverContainer">
+            <img src="{{book.cover}}" alt="">
+          </div>
+        </td>
+        <td>
+          {{book.content}}
+        </td>
+      </tr>
+    </table>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Review & rate
+      </mat-panel-title>
+      <mat-panel-description>
+        Leave your feedback about this book
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form (ngSubmit)="onPutReview(form1.value)" #form1="ngForm">
+      <mat-form-field>
+        <mat-label>Reviewer name</mat-label>
+        <input matInput placeholder="John Doe" id="viewBookFormReviewer" name="reviewer" required ngModel>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Comment</mat-label>
+        <textarea matInput placeholder="Wow! Wonderful book!" id="viewBookFormComment" name="message" required
+                  ngModel></textarea>
+      </mat-form-field>
+
+      <button mat-mini-fab type="submit">
+        <mat-icon>add_comment</mat-icon>
+      </button>
+    </form>
+    <form  (ngSubmit)="onPutRate(form2.value)" #form2="ngForm">
+      <mat-form-field>
+        <mat-label>Rate</mat-label>
+        <input matInput type="number" min="1" max="5" placeholder="1-5" required id="viewBookFormScore" name="score"  ngModel>
+      </mat-form-field>
+      <button mat-mini-fab type="submit">
+        <mat-icon>star</mat-icon>
+      </button>
+    </form>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Reviews
+      </mat-panel-title>
+      <mat-panel-description>
+        View reviews of other users for this book
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngFor="let review of book.reviews">
+      <mat-card class="reviewCard">
+        <mat-card-title>
+          {{review.reviewer}}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{review.message}}
+        </mat-card-subtitle>
+      </mat-card>
+    </div>
+  </mat-expansion-panel>
+</div>
+<mat-spinner [diameter]="24" *ngIf="loading"></mat-spinner>
+<!--
+<div *ngIf="book$ | async; let book">
   <table>
     <tr>
       <td>
-        <div id="coverContainer">
+        <div id="coverContainer1">
           <img src="{{book.cover}}" alt="">
         </div>
       </td>
@@ -21,12 +103,52 @@
     </tr>
     <tr>
       <td colspan="2">
-        <div *ngFor="let r of $any(book.reviews ) | async; let review"><!-- *ngFor="let r of $any(book.reviews ) | async; let review" -->
-    <p>{{review.message}}</p>
-    <p>{{review.reviewer}}</p>
-  </div>
+        <div>
+          <form (ngSubmit)="onCreateReview(e.value)" #e="ngForm">
+            <mat-form-field>
+              <mat-label>Reviewer name</mat-label>
+              <input matInput placeholder="John Doe" id="viewBookFormReviewer" name="reviewer" required ngModel>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Comment</mat-label>
+              <textarea matInput placeholder="Wow! Wonderful book!" id="viewBookFormComment" name="message" required
+                        ngModel></textarea>
+            </mat-form-field>
+
+            <button mat-mini-fab type="submit">
+              <mat-icon>add_comment</mat-icon>
+            </button>
+          </form>
+        </div>
+        <div>
+          <form>
+            <mat-form-field>
+              <mat-label>Rate</mat-label>
+              <input matInput type="number" min="1" max="5" placeholder="1-5" required>
+            </mat-form-field>
+            <button mat-mini-fab type="submit">
+              <mat-icon>star</mat-icon>
+            </button>
+          </form>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <div *ngFor="let review of book.reviews">
+          <mat-card class="reviewCard">
+            <mat-card-title>
+              {{review.reviewer}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{review.message}}
+            </mat-card-subtitle>
+          </mat-card>
+        </div>
       </td>
     </tr>
   </table>
 </div>
-
+*/
+-->

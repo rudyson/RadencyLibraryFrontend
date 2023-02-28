@@ -1,15 +1,20 @@
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
   <mat-tab label="All">
-    <mat-form-field appearance="fill">
-      <mat-label>Order by</mat-label>
-      <mat-select [(value)]="selectedOrderOption" (selectionChange)="loadBooks()">
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let orderOption of orderOptions" [value]="orderOption.value">
-          {{orderOption.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-spinner *ngIf="loading"></mat-spinner>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Order by</mat-label>
+        <mat-select [(value)]="selectedOrderOption" (selectionChange)="loadBooks()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let orderOption of orderOptions" [value]="orderOption.value">
+            {{orderOption.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-icon-button (click)="loadBooks()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <mat-spinner [diameter]="24" *ngIf="loading"></mat-spinner>
+    </div>
     <div class="booksContainer">
       <app-book-list-item
         *ngFor="let book of booksOrdered$ | async; let i = index"
